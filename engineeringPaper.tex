@@ -1,0 +1,59 @@
+\documentclass[10pt]{article}
+
+\usepackage{tikz, background, titling, setspace}
+\usepackage[left=1in, right=0.50in, top=0.75in, bottom=1.5in]{geometry}
+\usepackage{tabu}
+\usetikzlibrary{calc}
+
+% Entire document sans serif
+\renewcommand{\familydefault}{\sfdefault}
+
+\backgroundsetup{%
+ position=current page.center,
+ angle=0,
+ scale=1,
+ contents={%
+  \begin{tikzpicture}%
+    [
+      normal lines/.style={green!50!black, thin},
+      grid lines/.style={gray!10, very thin},
+      every node/.append style={black, align=center, opacity=1}
+    ]
+    \foreach \y in {0.1, 0.25,...,10.5} {  \draw[grid lines] (1in,\y in) -- (8in,\y in); }
+    \foreach \x in {1, 1.15,...,8}          {  \draw[grid lines] (\x in,0in) -- (\x in,10.5 in); }
+    \draw[normal lines] (1in,0) -- (1in,11in);
+    \draw[normal lines] (8in,0) -- (8in,11in);
+    \draw[normal lines] (0in,10.5in) -- (8.5in,10.5in);
+    \draw[normal lines] (3.125in,11in) -- (3.125in,10.5in);
+    \draw[normal lines] (5.375in,11in) -- (5.375in,10.5in);
+%    \node (t) [font=\LARGE, anchor=center] at (4.25in, 10.725in) {};
+%% INSERT THE NOTEBOOK YEAR | NUMBER
+    \node (t) [font=\small, anchor=center] at (1.75in, 10.725in) {\textbf{2024 $|$ Notebook \# 2}};
+    \node (t) [font=\small, anchor=center] at (8.20in, 0.25in) {\thepage};
+  \end{tikzpicture}%
+}}
+
+% Codet o repeat a code X number of times
+\usepackage{xparse}
+\ExplSyntaxOn
+\box_new:N \l_krirkrirk_box
+\NewDocumentEnvironment{RepeatedBlock}{m +b}{
+  \box_clear:N \l_krirkrirk_box
+  \vbox_set:Nn \l_krirkrirk_box {#2}
+  \prg_replicate:nn {#1} {\box_use:N \l_krirkrirk_box }
+}{}
+\ExplSyntaxOff
+
+
+% ===========================================================================
+\begin{document}
+\pagestyle{empty}
+
+~~
+
+\begin{RepeatedBlock}{5150}
+\clearpage
+~
+\end{RepeatedBlock}
+
+\end{document}
